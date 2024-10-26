@@ -9,14 +9,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Social Links - Left Column */}
           <div className="space-y-4">
-            <Link href="https://facebook.com" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
+            {/* <Link href="https://facebook.com" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
               <Facebook size={20} />
               <span>Facebook</span>
             </Link>
             <Link href="https://twitter.com" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
               <Twitter size={20} />
               <span>Twitter</span>
-            </Link>
+            </Link> */}
             <Link href="https://www.linkedin.com/company/the-waiter-company" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
               <Linkedin size={20} />
               <span>LinkedIn</span>
