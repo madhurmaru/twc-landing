@@ -14,6 +14,14 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+   const scrollToTop = (): void => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
+
   return (
     <header className="fixed w-full top-0 z-50 bg-primary shadow-md">
       <nav className="container mx-auto">
@@ -31,10 +39,14 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex space-x-12 text-sm font-roboto">
-            <Link href="/about" className="text-highlight hover:text-secondary transition-colors duration-300">
+            <button 
+              onClick={scrollToTop} 
+              type="button"
+              className="text-highlight hover:text-secondary transition-colors duration-300"
+            >
               About Us
-            </Link>
-            <Link href="/contact" className="text-highlight hover:text-secondary transition-colors duration-300">
+            </button>
+            <Link  href="mailto:founder@thewaitercompany.in" target='_blank' className="text-highlight hover:text-secondary transition-colors duration-300">
               Contact Us
             </Link>
             <Link href="#" className="text-highlight hover:text-secondary transition-colors duration-300">
@@ -59,15 +71,18 @@ export default function Navbar() {
           } lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
         >
           <div className="flex flex-col space-y-4 p-4 bg-primary border-t border-highlight/10">
-            <Link
-              href="/about"
-              className="text-highlight hover:text-secondary transition-colors duration-300"
-              onClick={() => setIsMenuOpen(false)}
+            <button
+              onClick={() => {
+                scrollToTop();
+                setIsMenuOpen(false);
+              }}
+              type="button"
+              className="text-highlight hover:text-secondary transition-colors duration-300 text-left"
             >
               About Us
-            </Link>
+            </button>
             <Link
-              href="/contact"
+               href="mailto:founder@thewaitercompany.in" target='_blank'
               className="text-highlight hover:text-secondary transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
