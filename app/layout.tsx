@@ -3,6 +3,7 @@ import '../styles/animations.css'
 import type { Metadata } from 'next'
 import { Aleo, Roboto } from 'next/font/google'
 import '../styles/gradients.css'
+import { Analytics } from "@vercel/analytics/react"
 
 
 const aleo = Aleo({ 
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
         {children}
+        <Analytics/>
       </body>
     </html>
   )
