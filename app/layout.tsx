@@ -1,6 +1,9 @@
 import './globals.css'
+import '../styles/animations.css'
 import type { Metadata } from 'next'
 import { Aleo, Roboto } from 'next/font/google'
+import '../styles/gradients.css'
+
 
 const aleo = Aleo({ 
   subsets: ['latin'], 
