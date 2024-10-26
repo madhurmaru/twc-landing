@@ -3,8 +3,8 @@ import '../styles/animations.css'
 import type { Metadata } from 'next'
 import { Aleo, Roboto } from 'next/font/google'
 import '../styles/gradients.css'
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react"
-
 
 const aleo = Aleo({ 
   subsets: ['latin'], 
@@ -34,7 +34,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
         {children}
-        <Analytics/>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
