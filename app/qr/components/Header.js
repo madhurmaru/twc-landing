@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import table from '../images/table.png';
 import icon from '../images/Vector.png'
 import logo from '../images/logo.png';
 import FilterToggle from './FilterToggle';
 import SearchBar from './SearchBar';
 const Header = () => {
-  useEffect(() => {
-    // Activate Feather Icons
-    if (window.feather) {
-      window.feather.replace();
-    }
-  }, []);
 
   return (
     
