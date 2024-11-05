@@ -1,0 +1,174 @@
+.main{
+  background-color: #fff;
+}
+.dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    justify-content: space-between;
+    margin: 15px;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    margin-bottom: -8px;
+    gap: 10px;
+  }
+
+  .top-button button{
+    height: 30px;
+    width: 150px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #C99E5A;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .overview-section {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .overview-section .card {
+    padding: 20px;
+    padding-top: 10px;
+    padding-left: 7px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 15%;
+    height: fit-content;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card p{
+    color: #C99E5A;
+    text-decoration: solid;
+    font-weight: bold;
+  }
+
+  .card.active {
+    background-color: #C99E5A; /* Green background */
+    color: white; /* White text */
+  }
+
+  .card.active p{
+    color: white;
+  }
+
+  .bottom{
+    margin-top: 30px;
+    padding: 15px;
+    align-items: center;
+    border: 1px solid #fff9f9;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;   
+  }
+
+  /* Search bar styling */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+  }
+  
+  /* Table status label styling */
+  .table-status-labels {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .status-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .status-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .available-indicator {
+    border: 1px solid green;
+  }
+  
+  .booked-indicator {
+    border: 1px solid #d63031;
+  }
+  
+  .selected-indicator {
+    background-color: transparent;
+    border: 1px dashed blue;
+  }
+  
+   
+  .table-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .table-box {
+    width: 180px;
+    padding-left: 7px;
+    border-radius: 8px;
+    text-align: left;
+    border: 2px solid #ddd;
+  }
+
+  .table-box h3{
+    margin-top: 7px;
+    margin-bottom: 50px;
+  }
+  
+  .table-box.available {
+    border: 2px solid green;
+  }
+  
+  .table-box.booked {
+    border: 2px solid red;
+  }
+  
+  .table-box.selected {
+    border: 2px solid blue;
+    border-style: dashed;
+  }
+  
+  .menu-navigation{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .categories{
+    display: flex;
+    gap: 20px;
+  }
+
+  .menu-navigation button{
+    padding: 5px;
+    background-color: rgb(230, 229, 228);
+    border: 2px solid rgb(230, 229, 228);
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+  }
