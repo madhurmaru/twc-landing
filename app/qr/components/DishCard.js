@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image'
 
 const DishCard = ({ name, price, rating, description, image }) => {
   return (
@@ -13,7 +12,7 @@ const DishCard = ({ name, price, rating, description, image }) => {
         
       </div>
       <div className="dish-image">
-        <Image src={image} alt={name} />
+        <img src={image} alt={name} />
         <button>Add</button>
       </div>
     </div>
