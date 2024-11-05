@@ -7,7 +7,7 @@ const DishCard = ({ name, price, rating, description, image }) => {
       <div className="dish-info">
         <h4>{name}</h4>
         <hr></hr>
-        <p style={{display:'flex', justifyContent: 'space-between', marginTop: '4%', fontWeight: 'bold'}}>₹{price} <span style={{position: 'absolute', left: '50%', fontWeight:'normal'}}> ⭐{rating}</span></p>
+        <p style={{display:'flex', justifyContent: 'space-between'}}><div style={{fontWeight: 'bolder'}}>₹{price} </div> <span style={{position: 'absolute', left: '200px'}}> ⭐{rating}</span></p>
         <p>{description}</p>
         
         
