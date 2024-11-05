@@ -8,8 +8,6 @@ import './App.css';
 import fries from './images/fries.png';
 import nuggets from './images/nugg.png';
 import icon from './images/icon.png';
-import Image from 'next/image';
-
 //import Cart from './components/cart';
 
 export default function qr() {
@@ -19,7 +17,7 @@ export default function qr() {
             <div className='cart-button'>
                 <div className='category'>
                     <CategorySummary />
-                    <div className='img1'><Image src={icon} alt='icon' /></div>
+                    <div className='img1'><img src={icon} alt='icon' /></div>
                 </div>
                 <div className="abcd">
                     <button>Open Cart</button>
