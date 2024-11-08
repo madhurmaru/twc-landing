@@ -7,6 +7,7 @@ import MenuItem from '@/components/MenuItem'
 import SearchBar from '@/components/SearchBar'
 import FilterMenu from '@/components/FilterMenu'
 
+// Sample menu data
 const menuItems = [
   {
     id: 1,
@@ -63,7 +64,9 @@ interface MenuItemType {
 
 export default function MenuPage({ params }: MenuPageProps) {
   const router = useRouter()
-  const [filteredItems, setFilteredItems] = useState(menuItems)
+  const tableId = params?.tableId
+
+  const [filteredItems, setFilteredItems] = useState<MenuItemType[]>(menuItems)
   const [cartItems, setCartItems] = useState<MenuItemType[]>([])
 
   const handleFilterChange = (isVeg: boolean) => {
@@ -97,10 +100,10 @@ export default function MenuPage({ params }: MenuPageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f5f5]">
-      <Header tableId={params.tableId} />
+      {tableId && <Header tableId={tableId} />}
       
       <SearchBar 
-        tableId={params.tableId} 
+        tableId={tableId} 
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
       />
@@ -120,9 +123,10 @@ export default function MenuPage({ params }: MenuPageProps) {
       </div>
 
       <div className="sticky bottom-0 p-4 bg-white z-40">
-        <button 
-          onClick={() => router.push(`/menu/${params.tableId}/cart`)}
-          className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
+       <button type="button"
+        aria-label="View Cart"
+        onClick={() => router.push(`/menu/${tableId}/cart`)}
+        className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
         >
           View Cart ({cartItems.reduce((acc, item) => acc + (item.quantity || 0), 0)} items)
         </button>

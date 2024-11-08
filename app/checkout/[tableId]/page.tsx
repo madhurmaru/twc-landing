@@ -15,6 +15,8 @@ interface CartItem {
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
+  const { tableId } = params;
+
   // Static data to replace backend functionality
   const [items] = React.useState<CartItem[]>([
     { id: 1, name: "Burger", quantity: 2, price: 150 },
@@ -41,7 +43,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
 
   return (
     <div className="min-h-screen bg-[#f5f1eb] flex flex-col">
-      <Header tableId={params.tableId} />
+      <Header tableId={tableId} />
 
       <div className="flex-1 p-4 space-y-4">
         <div className="rounded-2xl bg-[#B29792] p-6">
