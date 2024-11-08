@@ -1,11 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -20,12 +20,7 @@ export function LoginDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-md bg-[#E8D7D5]">
         <DialogHeader className="flex flex-col items-center space-y-4">
-          <button 
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
-          </button>
+           <DialogTitle className="text-xl font-semibold"> Login to Your Account </DialogTitle> 
           <div className="flex justify-center w-full mb-6">
             <Image
               src="/logo.png"
