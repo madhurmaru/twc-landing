@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
+      <body suppressHydrationWarning className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
         {children}
         <SpeedInsights />
         <Analytics />
