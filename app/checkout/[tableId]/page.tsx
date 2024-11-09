@@ -3,8 +3,13 @@
 import React from 'react';
 import Header from '@/components/Header';
 
+interface CheckoutPageParams {
+  tableId: string;
+}
+
+
 interface CheckoutPageProps {
-  params: { tableId: string };
+  params: CheckoutPageParams;
 }
 
 interface CartItem {
@@ -15,7 +20,7 @@ interface CartItem {
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
-  const { tableId } = params;
+  const [review, setReview] = React.useState('');
 
   // Static data to replace backend functionality
   const [items] = React.useState<CartItem[]>([
@@ -24,7 +29,12 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
     { id: 3, name: "Soda", quantity: 2, price: 40 },
   ]);
 
-  const [review, setReview] = React.useState('');
+  // Check if params is defined
+  if (!params) {
+    return <div>Error: No parameters provided.</div>;
+  }
+  
+  const { tableId } = params;
 
   const getTotal = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -115,8 +125,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
             </div>
           </form>
         </div>
-
         <button
+          type="button"
           onClick={() => {console.log('Payment process initiated')}}
           className="w-full bg-[#4E3E3B] text-white p-4 rounded-xl"
         >
@@ -128,3 +138,4 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
 };
 
 export default CheckoutPage;
+

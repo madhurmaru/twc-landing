@@ -5,6 +5,7 @@ import { Aleo, Roboto } from 'next/font/google'
 import '../styles/gradients.css'
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react"
+import { Suspense } from 'react';
 
 const aleo = Aleo({ 
   subsets: ['latin'], 
@@ -32,8 +33,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body suppressHydrationWarning className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
-        {children}
+        <Suspense fallback={null}>
+          {children}
+        </Suspense>
         <SpeedInsights />
         <Analytics />
       </body>

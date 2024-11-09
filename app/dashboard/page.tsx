@@ -1,23 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, LineChart, Line
 } from 'recharts';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import OrdersDialog from '@/components/OrdersDialog';
 
-const revenueData = [
-  { name: '1', Sales: 4000, Profit: 2400 },
-  { name: '5', Sales: 3000, Profit: 1398 },
-  { name: '10', Sales: 2000, Profit: 9800 },
-  { name: '15', Sales: 2780, Profit: 3908 },
-  { name: '20', Sales: 1890, Profit: 4800 },
-  { name: '25', Sales: 2390, Profit: 3800 },
-  { name: '30', Sales: 3490, Profit: 4300 },
-];
+// Monthly revenue data
+const monthlyData = {
+  'October': [
+    { name: '1', Sales: 20, Profit: 15 },
+    { name: '3', Sales: 35, Profit: 45 },
+    { name: '5', Sales: 25, Profit: 35 },
+    { name: '7', Sales: 40, Profit: 30 },
+    { name: '9', Sales: 35, Profit: 25 },
+    { name: '11', Sales: 50, Profit: 40 },
+    { name: '13', Sales: 90, Profit: 40 },
+    { name: '15', Sales: 65, Profit: 55 },
+    { name: '17', Sales: 50, Profit: 40 },
+    { name: '19', Sales: 55, Profit: 45 },
+    { name: '21', Sales: 60, Profit: 55 },
+    { name: '23', Sales: 75, Profit: 60 },
+    { name: '25', Sales: 70, Profit: 65 },
+    { name: '27', Sales: 60, Profit: 55 },
+    { name: '29', Sales: 65, Profit: 85 },
+    { name: '31', Sales: 60, Profit: 50 },
+  ],
+  'November': [
+    // Similar data structure for November
+  ],
+  'December': [
+    // Similar data structure for December
+  ],
+};
 
 const customerData = [
   { name: 'New Customers', value: 34249 },
@@ -32,112 +51,142 @@ const orderDivisionData = [
   { name: 'Alcohol', value: 2000 },
 ];
 
+
 const footstepData = [
-  { name: 'Jun', value: 400 },
-  { name: 'Jul', value: 300 },
-  { name: 'Aug', value: 200 },
-  { name: 'Sep', value: 278 },
-  { name: 'Oct', value: 189 },
+  { name: 'Jun', value: 2.5 },
+  { name: 'Jul', value: 5.0 },
+  { name: 'Aug', value: 7.5 },
+  { name: 'Sep', value: 5.0 },
+  { name: 'Oct', value: 10.0 },
 ];
 
 const COLORS = ['#6B8AF4', '#FF7F6B', '#96D160', '#FFB572', '#FF8FD2'];
 
 export default function Dashboard() {
+  const [selectedPeriod, setSelectedPeriod] = useState('Monthly');
+  const [selectedMonth, setSelectedMonth] = useState<keyof typeof monthlyData>('October');
+  const [revenueData, setRevenueData] = useState(monthlyData[selectedMonth]);
+  const [showOrdersDialog, setShowOrdersDialog] = useState(false);
+
+  const handleMonthChange = (month: keyof typeof monthlyData) => {
+    setSelectedMonth(month);
+    setRevenueData(monthlyData[month]);
+  };
+
   return (
-    <div className="min-h-screen bg-[#f5f1eb] p-6 font-serif">
-      <header className="flex justify-between items-center mb-8">
-        <div className="flex items-center gap-2">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+    <div className="min-h-screen bg-[#f5f1eb] p-8 font-serif">
+      <header className="flex justify-between items-center mb-12">
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
             <Image
               src="/logo.png"
               alt="The Waiter Company Logo"
               width={150}
               height={50}
-              className="h-8 lg:h-10 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
           <span className="text-xl text-gray-400">×</span>
           <span className="text-xl">Badshah&apos;s Kitchen</span>
         </div>
         <div className="text-right">
-          <h2 className="text-xl">Dashboard</h2>
+          <h2 className="text-xl font-medium">Dashboard</h2>
           <p className="text-sm text-gray-600">
             Saturday, November, 2024
           </p>
         </div>
       </header>
 
-     
-
-      <div className="flex justify-between items-center mb-6">
-         <h2 className="text-lg mb-4">Today&apos;s Overview</h2>
-         <div className="flex gap-4">
-            <button className="px-4 py-1.5 border border-gray-200 rounded-md text-sm bg-white">
+      <div className="mb-8">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-lg font-medium">Today&apos;s Overview</h2>
+          <div className="flex gap-4">
+            <Link 
+              href="/dashboard/tables"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+            >
               List of Tables
-            </button>
-            <button className="px-4 py-1.5 border border-gray-200 rounded-md text-sm bg-white">
+            </Link>
+            <Link
+              href="/dashboard/menu"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+            >
               Restaurant&apos;s Menu
-            </button>
-         </div>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-5 gap-6">
+          <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-gray-50 transition-colors"onClick={() => setShowOrdersDialog(true)}>
+            <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
+            <p className="text-2xl font-medium text-[#C99E5A]">200</p>
+          </div>
+
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h3 className="text-sm text-gray-600 mb-2">Completed Orders</h3>
+            <p className="text-2xl font-medium text-[#C99E5A]">170</p>
+          </div>
+          <Link href="/dashboard/pending-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-gray-50 transition-colors">
+            <h3 className="text-sm text-gray-600 mb-2">Pending Orders</h3>
+            <p className="text-2xl font-medium text-[#C99E5A]">30</p>
+          </Link>
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h3 className="text-sm text-gray-600 mb-2">Total Sales</h3>
+            <p className="text-2xl font-medium text-[#C99E5A]">50,000</p>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-sm">
+            <h3 className="text-sm text-gray-600 mb-2">Total Profit</h3>
+            <p className="text-2xl font-medium text-[#C99E5A]">22,000</p>
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-sm text-black mb-1">Total Orders</h3>
-          <p className="text-2xl font-normal text-[#C99E5A]">200</p>
-        </div>
-        <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-sm text-black mb-1">Completed Orders</h3>
-          <p className="text-2xl font-normal text-[#C99E5A]">170</p>
-        </div>
-        <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-sm text-black mb-1">Pending Orders</h3>
-          <p className="text-2xl font-normal text-[#C99E5A]">30</p>
-        </div>
-        <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-sm text-black mb-1">Total Sales</h3>
-          <p className="text-2xl font-normal text-[#C99E5A]">50,000</p>
-        </div>
-        <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-sm text-black mb-1">Total Profit</h3>
-          <p className="text-2xl font-normal text-[#C99E5A]">22,000</p>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-6">
+      <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl">Revenue</h3>
-          <div className="flex gap-2">
-            {['Yearly', 'Monthly', 'Weekly', 'Daily'].map((period) => (
-              <button
-                key={period}
-                className={`px-3 py-1 text-sm rounded-md transition-colors
-                  ${period === 'Monthly' 
-                    ? 'bg-[#C99E5A]' 
-                    : 'bg-gray-100'
-                  }`}
-              >
-                {period}
-              </button>
-            ))}
+          <h3 className="text-xl font-medium">Revenue</h3>
+          <div className="flex items-center gap-4">
+            <div className="flex gap-2">
+              {['Yearly', 'Monthly', 'Weekly', 'Daily'].map((period) => (
+                <button
+                  key={period}
+                  onClick={() => setSelectedPeriod(period)}
+                  className={`px-4 py-1.5 rounded-md text-sm transition-colors
+                    ${period === selectedPeriod 
+                      ? 'bg-[#C99E5A] text-white' 
+                      : 'bg-gray-100 hover:bg-gray-200'
+                    }`}
+                >
+                  {period}
+                </button>
+              ))}
+            </div>
+            <Select value={selectedMonth} onValueChange={handleMonthChange}>
+              <SelectTrigger className="w-[120px]">
+                <SelectValue placeholder="Select month" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="October">October</SelectItem>
+                <SelectItem value="November">November</SelectItem>
+                <SelectItem value="December">December</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <ResponsiveContainer width="100%" height={300}>
-          <AreaChart data={revenueData}>
+          <AreaChart data={revenueData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorSales" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FF7F6B" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#FF7F6B" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#FF9E9E" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#FF9E9E" stopOpacity={0}/>
               </linearGradient>
               <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#B196FF" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#B196FF" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#CEB5FF" stopOpacity={0.8}/>
+                <stop offset="95%" stopColor="#CEB5FF" stopOpacity={0}/>
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f1f1f1" />
-            <XAxis dataKey="name" stroke="#9ca3af" />
-            <YAxis stroke="#9ca3af" />
+            <CartesianGrid vertical={false} stroke="#f0f0f0" />
+            <XAxis dataKey="name" axisLine={false} tickLine={false} />
+            <YAxis axisLine={false} tickLine={false} />
             <Tooltip />
             <Area 
               type="monotone" 
@@ -157,10 +206,10 @@ export default function Dashboard() {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-xl mb-6">Customers</h3>
-          <div className="flex justify-center">
+      <div className="grid grid-cols-3 gap-6">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="text-xl font-medium mb-6">Customers</h3>
+          <div className="flex justify-center mb-6">
             <PieChart width={200} height={200}>
               <Pie
                 data={customerData}
@@ -178,21 +227,21 @@ export default function Dashboard() {
               </Pie>
             </PieChart>
           </div>
-          <div className="mt-6">
+          <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="text-sm" style={{ color: 'black' }}>New Customers</span>
-              <span className="text-2xl font-normal" style={{ color: '#6B8AF4' }}>34,249</span>
+              <span className="text-[#6B8AF4]">New Customers</span>
+              <span className="text-xl font-medium text-[#C99E5A]">34,249</span>
             </div>
-            <div className="flex justify-between items-center mt-4">
-              <span className="text-sm" style={{ color: 'black' }}>Repeated</span>
-              <span className="text-2xl font-normal" style={{ color: '#C0D2F0' }}>5,420</span>
+            <div className="flex justify-between items-center">
+              <span className="text-[#E2E8FF]">Repeated</span>
+              <span className="text-xl font-medium text-[#C99E5A]">5,420</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
-          <h3 className="text-xl mb-6">Order Division</h3>
-          <div className="flex justify-center">
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="text-xl font-medium mb-6">Order Division</h3>
+          <div className="flex justify-center mb-6">
             <PieChart width={200} height={200}>
               <Pie
                 data={orderDivisionData}
@@ -210,51 +259,46 @@ export default function Dashboard() {
               </Pie>
             </PieChart>
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {orderDivisionData.map((item, index) => (
               <div key={index}>
                 <p className="text-sm" style={{ color: COLORS[index] }}>{item.name}</p>
-                <p className="text-lg font-normal" style={{ color: COLORS[index] }}>{item.value}</p>
+                <p className="text-lg font-medium" style={{ color: COLORS[index] }}>{item.value}</p>
               </div>
             ))}
           </div>
         </div>
 
-        <Card className="w-full max-w-md bg-white shadow-md rounded-lg p-4">
-      <CardHeader>
-        <CardTitle className="text-xl font-medium text-center">Footstep/month</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="h-[200px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={footstepData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-              <XAxis 
-                dataKey="name" 
-                stroke="#9ca3af"
-                fontSize={12}
-                tickLine={false}
-              />
-              <YAxis 
-                stroke="#9ca3af"
-                fontSize={12}
-                tickLine={false}
-                axisLine={false}
-              />
-              <Tooltip />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke="#6B8AF4"
-                strokeWidth={2}
-                dot={{ stroke: '#6B8AF4', strokeWidth: 2, r: 4 }}
-                activeDot={{ r: 6 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className="bg-white rounded-xl p-6 shadow-sm">
+          <h3 className="text-xl font-medium mb-6">Footstep/month</h3>
+          <div className="h-[200px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={footstepData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+                <CartesianGrid vertical={false} stroke="#f0f0f0" />
+                <XAxis 
+                  dataKey="name" 
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis 
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="value"
+                  stroke="#6B8AF4"
+                  strokeWidth={2}
+                  dot={{ stroke: '#6B8AF4', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6 }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+      <OrdersDialog open={showOrdersDialog} onOpenChange={setShowOrdersDialog}/>
     </div>
-  </div>
-);
+  );
 }

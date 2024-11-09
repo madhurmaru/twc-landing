@@ -57,7 +57,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterChange, onSearch }) => {
             isVeg ? 'bg-green-500' : 'bg-red-500'
           }`}
           onClick={toggleFilter}
-          aria-pressed={isVeg}
           aria-label="Toggle vegetarian filter"
         >
           <span
