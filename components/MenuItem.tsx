@@ -52,7 +52,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
           </div>
           <button 
             onClick={onAddToCart}
-            className="px-6 py-1.5 bg-white text-gray-900 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium"
+            className="px-6 py-1.5 bg-white text-gray-900 rounded-md hover:bg-[#C99E5A] transition-colors text-sm font-medium"
           >
             Add
           </button>

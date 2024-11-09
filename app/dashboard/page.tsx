@@ -31,10 +31,40 @@ const monthlyData = {
     { name: '31', Sales: 60, Profit: 50 },
   ],
   'November': [
-    // Similar data structure for November
+    { name: '1', Sales: 10, Profit: 15 },
+    { name: '3', Sales: 25, Profit: 45 },
+    { name: '5', Sales: 35, Profit: 35 },
+    { name: '7', Sales: 40, Profit: 30 },
+    { name: '9', Sales: 55, Profit: 25 },
+    { name: '11', Sales: 20, Profit: 40 },
+    { name: '13', Sales: 30, Profit: 40 },
+    { name: '15', Sales: 25, Profit: 55 },
+    { name: '17', Sales: 50, Profit: 40 },
+    { name: '19', Sales: 25, Profit: 45 },
+    { name: '21', Sales: 30, Profit: 55 },
+    { name: '23', Sales: 35, Profit: 60 },
+    { name: '25', Sales: 50, Profit: 65 },
+    { name: '27', Sales: 30, Profit: 55 },
+    { name: '29', Sales: 25, Profit: 85 },
+    { name: '31', Sales: 40, Profit: 50 },
   ],
   'December': [
-    // Similar data structure for December
+    { name: '1', Sales: 20, Profit: 25 },
+    { name: '3', Sales: 35, Profit: 35 },
+    { name: '5', Sales: 25, Profit: 15 },
+    { name: '7', Sales: 40, Profit: 20 },
+    { name: '9', Sales: 35, Profit: 35 },
+    { name: '11', Sales: 50, Profit: 30 },
+    { name: '13', Sales: 90, Profit: 50 },
+    { name: '15', Sales: 65, Profit: 65 },
+    { name: '17', Sales: 50, Profit: 30 },
+    { name: '19', Sales: 55, Profit: 45 },
+    { name: '21', Sales: 60, Profit: 55 },
+    { name: '23', Sales: 75, Profit: 40 },
+    { name: '25', Sales: 70, Profit: 55 },
+    { name: '27', Sales: 60, Profit: 45 },
+    { name: '29', Sales: 65, Profit: 75 },
+    { name: '31', Sales: 60, Profit: 30 },
   ],
 };
 
@@ -90,7 +120,9 @@ export default function Dashboard() {
           <span className="text-xl">Badshah&apos;s Kitchen</span>
         </div>
         <div className="text-right">
-          <h2 className="text-xl font-medium">Dashboard</h2>
+            <Link href="/dashboard">
+            <h2 className="text-xl font-medium">Dashboard</h2>
+            </Link>
           <p className="text-sm text-gray-600">
             Saturday, November, 2024
           </p>
@@ -103,13 +135,13 @@ export default function Dashboard() {
           <div className="flex gap-4">
             <Link 
               href="/dashboard/tables"
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-[#C99E5A] transition-colors"
             >
               List of Tables
             </Link>
             <Link
               href="/dashboard/menu"
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-[#C99E5A] transition-colors"
             >
               Restaurant&apos;s Menu
             </Link>
@@ -117,7 +149,7 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-5 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-gray-50 transition-colors"onClick={() => setShowOrdersDialog(true)}>
+          <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-[#C99E5A] transition-colors"onClick={() => setShowOrdersDialog(true)}>
             <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">200</p>
           </div>
@@ -126,7 +158,7 @@ export default function Dashboard() {
             <h3 className="text-sm text-gray-600 mb-2">Completed Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">170</p>
           </div>
-          <Link href="/dashboard/pending-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-gray-50 transition-colors">
+          <Link href="/dashboard/pending-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-[#C99E5A] transition-colors">
             <h3 className="text-sm text-gray-600 mb-2">Pending Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">30</p>
           </Link>

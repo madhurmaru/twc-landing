@@ -77,7 +77,9 @@ export default function AddMenuItem() {
           <span className="text-xl">Badshah&apos;s Kitchen</span>
         </div>
         <div className="text-right">
-          <h2 className="text-xl font-medium">Dashboard</h2>
+          <Link href="/dashboard">
+            <h2 className="text-xl font-medium">Dashboard</h2>
+            </Link>
           <p className="text-sm text-gray-600">
             Saturday, November, 2024
           </p>

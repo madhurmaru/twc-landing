@@ -75,6 +75,9 @@ export default function RestaurantMenu() {
           <span className="text-xl">Badshah&apos;s Kitchen</span>
         </div>
         <div className="text-right">
+          <Link href="/dashboard">
+            <h2 className="text-xl font-medium">Dashboard</h2>
+            </Link>
           <p className="text-sm text-gray-600">
             Saturday, November, 2024
           </p>
@@ -87,13 +90,13 @@ export default function RestaurantMenu() {
         <div className="flex gap-4">
           <Link 
               href="/dashboard/tables"
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-[#C99E5A] transition-colors"
             >
               List of Tables
             </Link>
             <Link
               href="/dashboard/menu"
-              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-gray-50 transition-colors"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-md text-sm hover:bg-[#C99E5A] transition-colors"
             >
               Restaurant&apos;s Menu
             </Link>
@@ -102,7 +105,7 @@ export default function RestaurantMenu() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-gray-50 transition-colors"onClick={() => setShowOrdersDialog(true)}>
+        <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-[#C99E5A] transition-colors"onClick={() => setShowOrdersDialog(true)}>
             <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">200</p>
           </div>
@@ -110,7 +113,7 @@ export default function RestaurantMenu() {
           <h3 className="text-sm text-black mb-1">Completed Orders</h3>
           <p className="text-2xl font-normal text-[#C99E5A]">170</p>
         </div>
-        <Link href="/dashboard/pending-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-gray-50 transition-colors">
+        <Link href="/dashboard/pending-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-[#C99E5A] transition-colors">
             <h3 className="text-sm text-gray-600 mb-2">Pending Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">30</p>
           </Link>

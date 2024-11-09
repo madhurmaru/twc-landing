@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import {
   Dialog,
   DialogContent,
@@ -16,7 +17,7 @@ const ordersData = [
     date: "02/11/24",
     time: "9:15pm",
     tableNo: "15",
-    contactDetails: "My Name! / 999xxxxxx"
+    contactDetails: "Rahul / 999xxxxxx"
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const ordersData = [
     date: "02/11/24",
     time: "8:35pm",
     tableNo: "15",
-    contactDetails: "My Name! / 999xxxxxx"
+    contactDetails: "Raj / 999xxxxxx"
   },
 ];
 
@@ -58,9 +59,11 @@ const OrdersDialog: React.FC<OrdersDialogProps> = ({ open, onOpenChange }) => {
             {ordersData.map((order) => (
               <TableRow key={order.id}>
                 <TableCell>
-                  <img 
-                    src="/api/placeholder/60/60"
+                  <Image 
+                    src={order.image}
                     alt={order.name}
+                    width={60}
+                    height={60}
                     className="w-12 h-12 rounded-md object-cover"
                   />
                 </TableCell>
