@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import {
@@ -61,7 +61,7 @@ export default function AddMenuItem() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f1eb] p-6">
+    (<div className="min-h-screen bg-[#f5f1eb] p-6">
       <header className="flex justify-between items-center mb-12">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center">
@@ -71,7 +71,10 @@ export default function AddMenuItem() {
               width={150}
               height={50}
               className="h-8 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Link>
           <span className="text-xl text-gray-400">×</span>
           <span className="text-xl">Badshah&apos;s Kitchen</span>
@@ -85,7 +88,6 @@ export default function AddMenuItem() {
           </p>
         </div>
       </header>
-
       {/* Main Content Card */}
       <div className="bg-white rounded-3xl p-8">
         {/* Back Navigation */}
@@ -117,7 +119,10 @@ export default function AddMenuItem() {
               width={80}
               height={80}
               className="rounded-xl"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <div>Chicken Noodles</div>
           <div>
@@ -142,7 +147,15 @@ export default function AddMenuItem() {
             </Select>
           </div>
           <div className="flex items-center gap-1">
-            <Image src="/Non-veg.png" alt="Non Vegetarian" width={50} height={50} />
+            <Image
+              src="/Non-veg.png"
+              alt="Non Vegetarian"
+              width={50}
+              height={50}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
             <button
               type="button"
               aria-label="Toggle vegetarian option"
@@ -157,7 +170,15 @@ export default function AddMenuItem() {
                 } top-0.5`}
               />
             </button>
-            <Image src="/veg.png" alt="Vegetarian" width={50} height={50} />
+            <Image
+              src="/veg.png"
+              alt="Vegetarian"
+              width={50}
+              height={50}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
         </div>
 
@@ -171,7 +192,10 @@ export default function AddMenuItem() {
                 width={80}
                 height={80}
                 className="rounded-xl mb-2"
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             )}
             <label className="block w-20 h-20 border border-dashed border-gray-300 rounded-lg cursor-pointer">
               <input
@@ -247,7 +271,15 @@ export default function AddMenuItem() {
             </Select>
           </div>
           <div className="flex items-center gap-1">
-            <Image src="/Non-veg.png" alt="Non Vegetarian" width={50} height={50} />
+            <Image
+              src="/Non-veg.png"
+              alt="Non Vegetarian"
+              width={50}
+              height={50}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
             <button
               type="button"
               aria-label="Toggle vegetarian option"
@@ -262,7 +294,15 @@ export default function AddMenuItem() {
                 } top-0.5`}
               />
             </button>
-            <Image src="/veg.png" alt="Vegetarian" width={50} height={50} />
+            <Image
+              src="/veg.png"
+              alt="Vegetarian"
+              width={50}
+              height={50}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
         </div>
 
@@ -276,6 +316,6 @@ export default function AddMenuItem() {
           </button>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

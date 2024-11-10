@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 
 export function LoginDialog() {
   return (
-    <Dialog>
+    (<Dialog>
       <DialogTrigger asChild>
         <button className="text-highlight hover:text-secondary transition-colors duration-300">
           Log-In
@@ -28,7 +28,10 @@ export function LoginDialog() {
               width={150}
               height={50}
               className="h-8 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
         </DialogHeader>
         <div className="flex flex-col space-y-6 px-6">
@@ -59,7 +62,7 @@ export function LoginDialog() {
           </Button>
         </div>
       </DialogContent>
-    </Dialog>
+    </Dialog>)
   );
 }
 

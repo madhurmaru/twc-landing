@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
+import Image from "next/image";
 import Link from 'next/link';
-import OrdersDialog from '@/components/OrdersDialog';
 
 interface Order {
   id: number;
@@ -63,10 +62,9 @@ function OrderProgressBar({ status }: { status: Order['status'] }) {
 }
 
 export default function PendingOrders() {
-  const [showOrdersDialog, setShowOrdersDialog] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#f5f1eb] p-6 font-serif">
+    (<div className="min-h-screen bg-[#f5f1eb] p-6 font-serif">
       {/* Header */}
       <header className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-2">
@@ -77,7 +75,10 @@ export default function PendingOrders() {
               width={150}
               height={50}
               className="h-8 lg:h-10 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Link>
           <span className="text-xl text-gray-400">×</span>
           <span className="text-xl">Badshah&apos;s Kitchen</span>
@@ -91,7 +92,6 @@ export default function PendingOrders() {
           </p>
         </div>
       </header>
-
       {/* Today's Overview */}
       <div className="mb-8">
         <div className="flex justify-between items-center mb-6">
@@ -113,10 +113,10 @@ export default function PendingOrders() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-[#C99E5A] transition-colors"onClick={() => setShowOrdersDialog(true)}>
+          <Link href="/dashboard/total-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-[#C99E5A] transition-colors">
             <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">200</p>
-          </div>
+          </Link>
           <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
             <h3 className="text-sm text-black mb-1">Completed Orders</h3>
             <p className="text-2xl font-normal text-[#C99E5A]">170</p>
@@ -135,7 +135,6 @@ export default function PendingOrders() {
           </div>
         </div>
       </div>
-
       {/* Pending Orders Section */}
       <div className="bg-white rounded-lg p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
         <div className="flex justify-between items-center mb-6">
@@ -165,7 +164,10 @@ export default function PendingOrders() {
                         alt={order.name}
                         fill
                         className="object-cover rounded-lg"
-                      />
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </div>
                   </td>
                   <td className="py-4 px-4">{order.name}</td>
@@ -181,7 +183,6 @@ export default function PendingOrders() {
           </table>
         </div>
       </div>
-      <OrdersDialog open={showOrdersDialog} onOpenChange={setShowOrdersDialog}/>
-    </div>
+    </div>)
   );
 }

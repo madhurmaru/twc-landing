@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
 import { Pencil, Trash2, Plus } from 'lucide-react';
-import OrdersDialog from '@/components/OrdersDialog';
 
 // Sample menu items data
 const menuItems = [
@@ -45,7 +44,6 @@ const menuItems = [
 export default function RestaurantMenu() {
   const [selectedCategory, setSelectedCategory] = useState('Starters');
   const [items, setItems] = useState(menuItems);
-  const [showOrdersDialog, setShowOrdersDialog] = useState(false);
 
   const categories = ['Starters', 'Drinks', 'Desserts', 'Main Course', 'All Items'];
 
@@ -58,7 +56,7 @@ export default function RestaurantMenu() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f1eb] p-6 font-serif">
+    (<div className="min-h-screen bg-[#f5f1eb] p-6 font-serif">
       {/* Header */}
       <header className="flex justify-between items-center mb-8">
         <div className="flex items-center gap-2">
@@ -69,7 +67,10 @@ export default function RestaurantMenu() {
               width={150}
               height={50}
               className="h-8 lg:h-10 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Link>
           <span className="text-xl text-gray-400">×</span>
           <span className="text-xl">Badshah&apos;s Kitchen</span>
@@ -83,7 +84,6 @@ export default function RestaurantMenu() {
           </p>
         </div>
       </header>
-
       {/* Overview Section */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg mb-4">Today&apos;s Overview</h2>
@@ -102,13 +102,12 @@ export default function RestaurantMenu() {
             </Link>
         </div>
       </div>
-
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-        <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-[#C99E5A] transition-colors"onClick={() => setShowOrdersDialog(true)}>
+       <Link href="/dashboard/total-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-[#C99E5A] transition-colors">
             <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">200</p>
-          </div>
+       </Link>
         <div className="bg-white rounded-lg p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
           <h3 className="text-sm text-black mb-1">Completed Orders</h3>
           <p className="text-2xl font-normal text-[#C99E5A]">170</p>
@@ -126,7 +125,6 @@ export default function RestaurantMenu() {
           <p className="text-2xl font-normal text-[#C99E5A]">22,000</p>
         </div>
       </div>
-
       {/* Menu Section */}
       <div className="bg-white rounded-lg p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
         <div className="flex items-center justify-between mb-6">
@@ -179,7 +177,10 @@ export default function RestaurantMenu() {
                         alt={item.name}
                         fill
                         className="object-cover rounded-lg"
-                      />
+                        style={{
+                          maxWidth: "100%",
+                          height: "auto"
+                        }} />
                     </div>
                   </td>
                   <td className="py-4 px-4">{item.name}</td>
@@ -211,7 +212,6 @@ export default function RestaurantMenu() {
           </table>
         </div>
       </div>
-      <OrdersDialog open={showOrdersDialog} onOpenChange={setShowOrdersDialog}/>
-    </div>
+    </div>)
   );
 }

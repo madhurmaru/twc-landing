@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import LoginDialog from './LoginDialog';
@@ -23,7 +23,7 @@ export default function Navbar() {
 
 
   return (
-    <header className="fixed w-full top-0 z-50 bg-primary shadow-md">
+    (<header className="fixed w-full top-0 z-50 bg-primary shadow-md">
       <nav className="container mx-auto">
         <div className="flex justify-between items-center p-4 lg:p-6">
           {/* Logo */}
@@ -34,7 +34,10 @@ export default function Navbar() {
               width={150}
               height={50}
               className="h-8 lg:h-10 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Link>
 
           {/* Desktop Navigation */}
@@ -98,6 +101,6 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-    </header>
-  )
+    </header>)
+  );
 }

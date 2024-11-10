@@ -6,9 +6,8 @@ import {
   PieChart, Pie, Cell, LineChart, Line
 } from 'recharts';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from "next/image";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import OrdersDialog from '@/components/OrdersDialog';
 
 // Monthly revenue data
 const monthlyData = {
@@ -96,7 +95,6 @@ export default function Dashboard() {
   const [selectedPeriod, setSelectedPeriod] = useState('Monthly');
   const [selectedMonth, setSelectedMonth] = useState<keyof typeof monthlyData>('October');
   const [revenueData, setRevenueData] = useState(monthlyData[selectedMonth]);
-  const [showOrdersDialog, setShowOrdersDialog] = useState(false);
 
   const handleMonthChange = (month: keyof typeof monthlyData) => {
     setSelectedMonth(month);
@@ -104,7 +102,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f1eb] p-8 font-serif">
+    (<div className="min-h-screen bg-[#f5f1eb] p-8 font-serif">
       <header className="flex justify-between items-center mb-12">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center">
@@ -114,7 +112,10 @@ export default function Dashboard() {
               width={150}
               height={50}
               className="h-8 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </Link>
           <span className="text-xl text-gray-400">×</span>
           <span className="text-xl">Badshah&apos;s Kitchen</span>
@@ -128,7 +129,6 @@ export default function Dashboard() {
           </p>
         </div>
       </header>
-
       <div className="mb-8">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-lg font-medium">Today&apos;s Overview</h2>
@@ -149,10 +149,10 @@ export default function Dashboard() {
         </div>
 
         <div className="grid grid-cols-5 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm cursor-pointer hover:bg-[#C99E5A] transition-colors"onClick={() => setShowOrdersDialog(true)}>
+          <Link href="/dashboard/total-orders" className="bg-white rounded-xl p-6 shadow-sm hover:bg-[#C99E5A] transition-colors">
             <h3 className="text-sm text-gray-600 mb-2">Total Orders</h3>
             <p className="text-2xl font-medium text-[#C99E5A]">200</p>
-          </div>
+          </Link>
 
           <div className="bg-white rounded-xl p-6 shadow-sm">
             <h3 className="text-sm text-gray-600 mb-2">Completed Orders</h3>
@@ -172,7 +172,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-
       <div className="bg-white rounded-xl p-6 shadow-sm mb-8">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-xl font-medium">Revenue</h3>
@@ -237,7 +236,6 @@ export default function Dashboard() {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-
       <div className="grid grid-cols-3 gap-6">
         <div className="bg-white rounded-xl p-6 shadow-sm">
           <h3 className="text-xl font-medium mb-6">Customers</h3>
@@ -330,7 +328,6 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <OrdersDialog open={showOrdersDialog} onOpenChange={setShowOrdersDialog}/>
-    </div>
+    </div>)
   );
 }

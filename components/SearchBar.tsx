@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import Image from "next/image";
 import { Search } from 'lucide-react';
 import nonveg from '/public/Non-veg.png';
 import veg from '/public/Veg.png';
@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterChange, onSearch }) => {
   };
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-[#f5f1eb]">
+    (<div className="flex items-center gap-4 p-4 bg-[#f5f1eb]">
       {/* Search Input */}
       <div className="flex-1">
         <div className="relative">
@@ -44,13 +44,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterChange, onSearch }) => {
           />
         </div>
       </div>
-
       {/* Filter Icons and Switch */}
       <div className="flex items-center gap-2">
-        <Image 
-          src={nonveg} 
-          alt="non-veg" 
-        />
+        <Image
+          src={nonveg}
+          alt="non-veg"
+          style={{
+            maxWidth: "100%",
+            height: "auto"
+          }} />
         <button
           type="button"
           className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 ${
@@ -65,12 +67,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterChange, onSearch }) => {
             }`}
           />
         </button>
-        <Image 
-          src={veg} 
-          alt="veg" 
-        />
+        <Image
+          src={veg}
+          alt="veg"
+          style={{
+            maxWidth: "100%",
+            height: "auto"
+          }} />
       </div>
-    </div>
+    </div>)
   );
 };
 

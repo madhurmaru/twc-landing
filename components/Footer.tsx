@@ -1,10 +1,10 @@
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 import { Linkedin, Instagram, MapPin, Phone, Mail } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-supporting text-highlight font-roboto py-8">
+    (<footer className="bg-supporting text-highlight font-roboto py-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Social Links - Left Column */}
@@ -68,11 +68,14 @@ export default function Footer() {
               width={150}
               height={50}
               className="h-10 w-auto"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
             <p className="text-sm">Copyright © 2024 • The Waiter Company</p>
           </div>
         </div>
       </div>
-    </footer>
-  )
+    </footer>)
+  );
 }

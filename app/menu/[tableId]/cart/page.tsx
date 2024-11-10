@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import Image from 'next/image';
+import Image from "next/image";
 import { ShoppingCart, Minus, Plus } from 'lucide-react';
 import Header from '@/components/Header';
 
@@ -44,9 +44,8 @@ export default function CartPage({ params }: CartPageProps) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f1eb]">
+    (<div className="flex flex-col min-h-screen bg-[#f5f1eb]">
       <Header tableId={params.tableId} />
-
       <main className="flex-1 p-4">
         <div className="rounded-2xl bg-[#B29792] p-4 mb-4">
           <div className="flex items-center gap-2 mb-6">
@@ -63,7 +62,10 @@ export default function CartPage({ params }: CartPageProps) {
                     alt={item.name}
                     fill
                     className="rounded-lg object-cover"
-                  />
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto"
+                    }} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-medium">{item.name}</h3>
@@ -96,7 +98,6 @@ export default function CartPage({ params }: CartPageProps) {
           </div>
         </div>
       </main>
-
       <div className="sticky bottom-0 p-4">
         <div className="rounded-2xl bg-[#e8d7d7] p-4">
           <div className="flex justify-between items-center mb-4">
@@ -111,6 +112,6 @@ export default function CartPage({ params }: CartPageProps) {
           </button>
         </div>
       </div>
-    </div>
+    </div>)
   );
 }

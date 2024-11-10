@@ -1,6 +1,6 @@
 'use client';
 
-import Image, { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from "next/image";
 import { Star } from 'lucide-react';
 
 interface MenuItemProps {
@@ -22,7 +22,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   onAddToCart
 }) => {
   return (
-    <div className="rounded-2xl bg-[#B29792] p-4">
+    (<div className="rounded-2xl bg-[#B29792] p-4">
       <div className="flex justify-between gap-4">
         <div className="flex-1 min-w-0">
           <h3 className="text-xl font-serif text-gray-900 mb-1">{name}</h3> 
@@ -48,7 +48,10 @@ const MenuItem: React.FC<MenuItemProps> = ({
               fill
               className="object-cover"
               sizes="(max-width: 96px) 100vw, 96px"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           </div>
           <button 
             onClick={onAddToCart}
@@ -58,7 +61,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>)
   );
 };
 
