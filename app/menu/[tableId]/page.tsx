@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import MenuItem from '@/components/MenuItem'
@@ -48,7 +48,9 @@ const menuItems = [
 ]
 
 interface MenuPageProps {
-  params: { tableId: string };
+  params: {
+    tableId: string;
+  };
 }
 
 interface MenuItemType {
@@ -64,10 +66,19 @@ interface MenuItemType {
 
 export default function MenuPage({ params }: MenuPageProps) {
   const router = useRouter()
-  const tableId = params?.tableId
-
+  const [tableId, setTableId] = useState<string | null>(null)
   const [filteredItems, setFilteredItems] = useState<MenuItemType[]>(menuItems)
   const [cartItems, setCartItems] = useState<MenuItemType[]>([])
+
+  useEffect(() => {
+    if (params.tableId) {
+      setTableId(params.tableId)
+    }
+  }, [params.tableId])
+
+  if (!tableId) {
+    return <div className="p-4">Loading...</div>
+  }
 
   const handleFilterChange = (isVeg: boolean) => {
     if (isVeg) {
@@ -100,7 +111,7 @@ export default function MenuPage({ params }: MenuPageProps) {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#f5f5f5]">
-      {tableId && <Header tableId={tableId} />}
+      <Header tableId={tableId} />
       
       <SearchBar 
         tableId={tableId} 
@@ -123,10 +134,11 @@ export default function MenuPage({ params }: MenuPageProps) {
       </div>
 
       <div className="sticky bottom-0 p-4 bg-white z-40">
-       <button type="button"
-        aria-label="View Cart"
-        onClick={() => router.push(`/menu/${tableId}/cart`)}
-        className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
+        <button
+          type="button"
+          aria-label="View Cart"
+          onClick={() => router.push(`/menu/${tableId}/cart`)}
+          className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
         >
           View Cart ({cartItems.reduce((acc, item) => acc + (item.quantity || 0), 0)} items)
         </button>

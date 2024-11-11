@@ -179,7 +179,6 @@ export default function RestaurantMenu() {
                         className="object-cover rounded-lg"
                         style={{
                           maxWidth: "100%",
-                          height: "auto"
                         }} />
                     </div>
                   </td>

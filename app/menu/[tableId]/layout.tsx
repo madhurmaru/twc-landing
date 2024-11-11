@@ -4,8 +4,6 @@ import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { Aleo } from 'next/font/google'
 import '../../../styles/gradients.css'
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react"
 import React from 'react';
 
 const aleo = Aleo({ 
@@ -35,8 +33,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
-        <SpeedInsights />
-        <Analytics />
         {children}
       </body>
     </html>

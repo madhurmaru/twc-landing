@@ -166,7 +166,6 @@ export default function PendingOrders() {
                         className="object-cover rounded-lg"
                         style={{
                           maxWidth: "100%",
-                          height: "auto"
                         }} />
                     </div>
                   </td>

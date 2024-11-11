@@ -64,7 +64,6 @@ export default function CartPage({ params }: CartPageProps) {
                     className="rounded-lg object-cover"
                     style={{
                       maxWidth: "100%",
-                      height: "auto"
                     }} />
                 </div>
                 <div className="flex-1">

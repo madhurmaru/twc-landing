@@ -168,7 +168,6 @@ export default function TotalOrders() {
                         className="object-cover rounded-lg"
                         style={{
                           maxWidth: "100%",
-                          height: "auto"
                         }} />
                     </div>
                   </td>
