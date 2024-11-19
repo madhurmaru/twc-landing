@@ -36,7 +36,7 @@ export default function OrderTrackingPage({ params }: OrderTrackingPageProps) {
       <Header tableId={params.tableId} />
 
       {/* Main Content */}
-      <div className="rounded-2xl bg-[#B29792] p-6">
+      <div className="rounded-2xl bg-[#FFFFFF] p-6">
         <h1 className="text-2xl font-serif mb-6 text-center">Thank you for your order!</h1>
 
         {/* Estimated Time */}
@@ -60,28 +60,22 @@ export default function OrderTrackingPage({ params }: OrderTrackingPageProps) {
       </div>
 
       {/* Bill Details */}
-      <div className="rounded-2xl bg-[#B29792] p-6">
-        <div className="mb-6 space-y-3">
-          <div className="flex justify-between items-center">
-            <span className="text-lg">Running Bill</span>
-            <span className="text-lg">₹ {runningBill.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between items-center pt-2 border-t border-gray-300">
+      <div className="rounded-2xl bg-[#FFFFFF] p-6">
+        <div className="mb-6 space-y-3 flex justify-between items-center">
             <span className="text-lg font-medium">Total Bill</span>
             <span className="text-lg font-medium">₹ {totalBill.toFixed(2)}</span>
-          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <button 
             onClick={() => router.push(`/checkout/${params.tableId}`)}
-            className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
+            className="w-full bg-[#9D8480] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
           >
             Check Out
           </button>
           <button 
             onClick={() => router.push(`/menu/${params.tableId}`)}
-            className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
+            className="w-full bg-[#9D8480] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
           >
             Back to home
           </button>

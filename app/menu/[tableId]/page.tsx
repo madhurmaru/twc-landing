@@ -13,7 +13,8 @@ const menuItems = [
     id: 1,
     name: 'Crispy fries',
     price: 60,
-    description: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt. A classic side dish that pairs perfectly with burgers, sandwiches, or as a snack on its own.',
+    description: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt.',
+    longDescription: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt. A classic side dish that pairs perfectly with burgers, sandwiches, or as a snack on its own.',
     image: '/fries.png',
     rating: 4.1,
     isVeg: true
@@ -22,7 +23,8 @@ const menuItems = [
     id: 2,
     name: 'Chicken nuggets',
     price: 80,
-    description: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried. They are a popular fast food item, often served with french fries and dipping sauces like ketchup, mustard, or BBQ sauce.',
+    description: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried.',
+    longDescription: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried. They are a popular fast food item, often served with french fries and dipping sauces like ketchup, mustard, or BBQ sauce.',
     image: '/nugg.png',
     rating: 4.3,
     isVeg: false
@@ -31,7 +33,8 @@ const menuItems = [
     id: 3,
     name: 'Crispy fries',
     price: 60,
-    description: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt. A classic side dish that pairs perfectly with burgers, sandwiches, or as a snack on its own.',
+    description: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt.',
+    longDescription: 'Crispy, golden-brown fries served piping hot with a sprinkle of salt. A classic side dish that pairs perfectly with burgers, sandwiches, or as a snack on its own.',
     image: '/fries.png',
     rating: 4.1,
     isVeg: true
@@ -40,7 +43,8 @@ const menuItems = [
     id: 4,
     name: 'Chicken nuggets',
     price: 80,
-    description: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried. They are a popular fast food item, often served with french fries and dipping sauces like ketchup, mustard, or BBQ sauce.',
+    description: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried.',
+    longDescription: 'Chicken nuggets are bite-sized pieces of chicken meat that are typically breaded and deep-fried. They are a popular fast food item, often served with french fries and dipping sauces like ketchup, mustard, or BBQ sauce.',
     image: '/nugg.png',
     rating: 4.3,
     isVeg: false
@@ -69,12 +73,13 @@ export default function MenuPage({ params }: MenuPageProps) {
   const [tableId, setTableId] = useState<string | null>(null)
   const [filteredItems, setFilteredItems] = useState<MenuItemType[]>(menuItems)
   const [cartItems, setCartItems] = useState<MenuItemType[]>([])
+  const [showFilterMenu, setShowFilterMenu] = useState(true)
 
   useEffect(() => {
-    if (params.tableId) {
+    if (params && params.tableId) {
       setTableId(params.tableId)
     }
-  }, [params.tableId])
+  }, [params])
 
   if (!tableId) {
     return <div className="p-4">Loading...</div>
@@ -109,8 +114,12 @@ export default function MenuPage({ params }: MenuPageProps) {
     })
   }
 
+  const toggleFilterMenu = () => {
+    setShowFilterMenu(prev => !prev)
+  }
+
   return (
-    <div className="flex flex-col min-h-screen bg-[#f5f5f5]">
+    <div className="flex flex-col min-h-screen bg-[#F1EEE6]">
       <Header tableId={tableId} />
       
       <SearchBar 
@@ -125,20 +134,24 @@ export default function MenuPage({ params }: MenuPageProps) {
             key={item.id}
             {...item}
             onAddToCart={() => addToCart(item)}
+            toggleFilterMenu={toggleFilterMenu}
+            cartItems={cartItems}
           />
         ))}
       </main>
 
-      <div className="fixed bottom-[88px] right-4 z-50">
-        <FilterMenu onFilterChange={handleFilterChange} />
-      </div>
+      {showFilterMenu && (
+        <div className="fixed bottom-[88px] right-4 z-50">
+          <FilterMenu onFilterChange={handleFilterChange} />
+        </div>
+      )}
 
       <div className="sticky bottom-0 p-4 bg-white z-40">
         <button
           type="button"
           aria-label="View Cart"
           onClick={() => router.push(`/menu/${tableId}/cart`)}
-          className="w-full bg-[#4E3E3B] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
+          className="w-full bg-[#9D8480] text-white py-3 rounded-md hover:bg-[#3a2e2c] transition-colors"
         >
           View Cart ({cartItems.reduce((acc, item) => acc + (item.quantity || 0), 0)} items)
         </button>

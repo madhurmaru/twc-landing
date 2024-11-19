@@ -56,7 +56,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
       <Header tableId={tableId} />
 
       <div className="flex-1 p-4 space-y-4">
-        <div className="rounded-2xl bg-[#B29792] p-6">
+        <div className="rounded-2xl bg-[#FFFFFF] p-6">
           <p className="text-center italic mb-4">We hope you enjoyed our service!</p>
           
           <h2 className="text-lg font-medium mb-3">Order Summary</h2>
@@ -106,7 +106,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-[#B29792] p-6">
+        <div className="rounded-2xl bg-[#FFFFFF] p-6">
           <h2 className="text-lg font-medium mb-4">Leave a Review</h2>
           <form onSubmit={handleSubmitReview}>
             <textarea
@@ -118,7 +118,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-[#4E3E3B] text-white px-6 py-2 rounded-md"
+                className="bg-[#9D8480] text-white px-6 py-2 rounded-md"
               >
                 Submit
               </button>
@@ -128,7 +128,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
         <button
           type="button"
           onClick={() => {console.log('Payment process initiated')}}
-          className="w-full bg-[#4E3E3B] text-white p-4 rounded-xl"
+          className="w-full bg-[#9D8480] text-white p-4 rounded-xl"
         >
           Pay Now
         </button>

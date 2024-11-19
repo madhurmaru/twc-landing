@@ -47,10 +47,10 @@ export default function CartPage({ params }: CartPageProps) {
     (<div className="flex flex-col min-h-screen bg-[#f5f1eb]">
       <Header tableId={params.tableId} />
       <main className="flex-1 p-4">
-        <div className="rounded-2xl bg-[#B29792] p-4 mb-4">
+        <div className="rounded-2xl bg-[#FFFFFF] p-4 mb-4">
           <div className="flex items-center gap-2 mb-6">
             <ShoppingCart className="w-5 h-5" />
-            <h2 className="text-xl font-serif">Your Cart</h2>
+            <h2 className="text-xl font-serif">Current Order</h2>
           </div>
 
           <div className="space-y-4">
@@ -98,14 +98,14 @@ export default function CartPage({ params }: CartPageProps) {
         </div>
       </main>
       <div className="sticky bottom-0 p-4">
-        <div className="rounded-2xl bg-[#e8d7d7] p-4">
+        <div className="rounded-2xl bg-[#FFFFFF] p-4">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-lg font-medium">Running Bill</span>
+            <span className="text-lg font-medium">Current Order</span>
             <span className="text-lg">₹ {getTotal()}</span>
           </div>
           <button 
             onClick={handlePlaceOrder}
-            className="w-full py-3 bg-[#4E3E3B] text-white rounded-md hover:bg-[#3a2e2c] transition-colors"
+            className="w-full py-3 bg-[#9D8480] text-white rounded-md hover:bg-[#3a2e2c] transition-colors"
           >
             Place Order
           </button>

@@ -1,11 +1,6 @@
 'use client';
-
 import React, { useState } from 'react';
-import Image from "next/image";
-import { Search } from 'lucide-react';
-import nonveg from '/public/Non-veg.png';
-import veg from '/public/Veg.png';
-import '../styles/globals.css';
+import { Search, Check } from 'lucide-react';
 
 interface SearchBarProps {
   tableId: string;
@@ -30,52 +25,38 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFilterChange, onSearch }) => {
   };
 
   return (
-    (<div className="flex items-center gap-4 p-4 bg-[#f5f1eb]">
-      {/* Search Input */}
-      <div className="flex-1">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-          <input
-            type="text"
-            placeholder="Search dishes"
-            className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white text-gray-700 placeholder:text-gray-400 border-none focus:outline-none focus:ring-2 focus:ring-gray-200"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-        </div>
+    <div className="flex items-center gap-4 p-4 bg-[#f5f1eb]">
+      <div className="flex-1 relative">
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <input
+          type="text"
+          placeholder="Search dishes"
+          className="w-full pl-10 pr-4 py-2.5 rounded-full bg-white text-gray-700 placeholder:text-gray-400 border-none focus:outline-none focus:ring-2 focus:ring-gray-200"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
       </div>
-      {/* Filter Icons and Switch */}
       <div className="flex items-center gap-2">
-        <Image
-          src={nonveg}
-          alt="non-veg"
-          style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
-        <button
-          type="button"
-          className={`relative w-12 h-6 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 ${
-            isVeg ? 'bg-green-500' : 'bg-red-500'
-          }`}
-          onClick={toggleFilter}
-          aria-label="Toggle vegetarian filter"
-        >
-          <span
-            className={`absolute left-0.5 top-0.5 w-5 h-5 bg-white rounded-full transition-transform duration-300 ${
-              isVeg ? 'transform translate-x-6' : ''
-            }`}
-          />
-        </button>
-        <Image
-          src={veg}
-          alt="veg"
-          style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
+        <label className="flex items-center cursor-pointer gap-2">
+          <div className="relative">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={isVeg}
+              onChange={toggleFilter}
+            />
+            <div className="w-5 h-5 border-2 border-gray-300 rounded bg-white peer-checked:bg-green-500 peer-checked:border-green-500 transition-colors">
+              {isVeg && (
+                <Check className="w-4 h-4 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+              )}
+            </div>
+          </div>
+          <span className="text-sm font-medium text-gray-700">
+            Veg Only
+          </span>
+        </label>
       </div>
-    </div>)
+    </div>
   );
 };
 
