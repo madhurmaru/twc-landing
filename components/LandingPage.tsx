@@ -7,6 +7,7 @@ import Footer from './Footer'
 import '../styles/animations.css'
 import '../styles/gradients.css'
 import { ArrowUp } from 'lucide-react'
+import { aleo, roboto } from '../app/fonts'
 
 export default function LandingPage() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -39,7 +40,7 @@ export default function LandingPage() {
   ];
 
   return (
-    (<div className="min-h-screen bg-[#F5F1EB] text-[#4A3F35] font-serif">
+    <div className={`min-h-screen bg-[#F5F1EB] text-[#4A3F35] font-serif ${aleo.variable} ${roboto.variable}`}>
       <header className="fixed w-full top-0 z-50 bg-[#F5F1EB] shadow-sm">
         <Navbar />
       </header>
@@ -47,13 +48,13 @@ export default function LandingPage() {
         <div className="flex flex-col lg:flex-row items-center mb-20">
           {/* Left content section */}
           <div className="lg:w-1/2 lg:pr-12 animate-slideInFromLeft">
-            <h1 className="text-2xl lg:text-5xl font-light leading-tight mb-6 italic">
+            <h1 className="text-2xl lg:text-5xl text-[#B39793] font-normal leading-tight mb-6 italic font-aleo">
               Delivering innovative solutions to empower your cafe business!
             </h1>
-            <p className="text-lg mb-8 font-sans">
-              The Waiter Company is a platform where with our simple solution, every manual process in a cafe is just a finger touch away.
+            <p className="text-lg mb-8 font-roboto">
+              The Waiter Company is a platform where with our simple solution, every manual process in a cafe is just a finger touch away. 
             </p>
-            <p className="text-5xl font-light italic">
+            <p className="text-6xl font-heavy italic font-roboto">
               Kitchen ke bahar hum dekhlenge!
             </p>
           </div>
@@ -77,9 +78,11 @@ export default function LandingPage() {
         </div>
 
         <section className="mt-20 animate-fadeIn">
-          <h2 className="text-3xl font-light mb-16 text-center">
-            Why Choose <span className="text-[#C99E5A]">The Waiter Company</span> (TWC)?
+          <h2 className="text-3xl font-normal mb-16 text-[#B39793] transition-colors text-center">
+            
+            Why Choose <span className="text-black transition-colors">The Waiter Company</span> (TWC)?
           </h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-12 gap-y-16">
             {features.map((feature, index) => (
               <div 
@@ -112,13 +115,14 @@ export default function LandingPage() {
       <Footer />
       {showScrollTop && (
       <button
-      title="Scroll to top"
-      className="fixed bottom-8 right-8 bg-secondary text-primary p-3 rounded-full shadow-lg hover:bg-highlight transition-colors duration-300 animate-fadeIn"
-      onClick={scrollToTop}
+        title="Scroll to top"
+        className="fixed bottom-8 right-8 bg-secondary text-primary p-3 rounded-full shadow-lg hover:bg-highlight transition-colors duration-300 animate-fadeIn"
+        onClick={scrollToTop}
       >
          <ArrowUp size={24} />
       </button>
       )}
-    </div>)
+    </div>
   );
 }
+

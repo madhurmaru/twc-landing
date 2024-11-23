@@ -17,11 +17,11 @@ export default function Footer() {
               <Twitter size={20} />
               <span>Twitter</span>
             </Link> */}
-            <Link href="https://www.linkedin.com/company/the-waiter-company" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
+            <Link href="https://www.linkedin.com/company/the-waiter-company" target='_blank' className="flex items-center space-x-2 hover:text-[#F5F1EB]">
               <Linkedin size={20} />
               <span>LinkedIn</span>
             </Link>
-            <Link href="https://www.instagram.com/thewaitercompany" target='_blank' className="flex items-center space-x-2 hover:text-gray-300">
+            <Link href="https://www.instagram.com/thewaitercompany" target='_blank' className="flex items-center space-x-2 hover:text-[#F5F1EB]">
               <Instagram size={20} />
               <span>Instagram</span>
             </Link>

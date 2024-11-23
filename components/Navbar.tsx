@@ -23,7 +23,7 @@ export default function Navbar() {
 
 
   return (
-    (<header className="fixed w-full top-0 z-50 bg-primary shadow-md">
+    (<header className="fixed w-full top-0 z-50 bg-[#B39793] shadow-md">
       <nav className="container mx-auto">
         <div className="flex justify-between items-center p-4 lg:p-6">
           {/* Logo */}
@@ -42,17 +42,20 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex space-x-12 text-sm font-roboto">
+            <Link  href="#" target='_blank' className="text-highlight hover:text-[#F5F1EB] transition-colors duration-300">
+              Free Demo
+            </Link>
             <button 
               onClick={scrollToTop} 
               type="button"
-              className="text-highlight hover:text-secondary transition-colors duration-300"
+              className="text-highlight hover:text-[#F5F1EB] transition-colors duration-300"
             >
               About Us
             </button>
-            <Link  href="mailto:founder@thewaitercompany.in" target='_blank' className="text-highlight hover:text-secondary transition-colors duration-300">
+            <Link  href="mailto:founder@thewaitercompany.in" target='_blank' className="text-highlight hover:text-[#F5F1EB] transition-colors duration-300">
               Contact Us
             </Link>
-            <Link href="#" className="text-highlight hover:text-secondary transition-colors duration-300">
+            <Link href="#" target='_blank' className="text-highlight hover:text-[#F5F1EB] transition-colors duration-300">
               <LoginDialog />
             </Link>
           </div>
