@@ -1,11 +1,12 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import Header from '@/components/Header'
-import MenuItem from '@/components/MenuItem'
-import SearchBar from '@/components/SearchBar'
-import FilterMenu from '@/components/FilterMenu'
+import React from 'react';
+import { useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import Header from '@/components/Header';
+import MenuItem from '@/components/MenuItem';
+import SearchBar from '@/components/SearchBar';
+import FilterMenu from '@/components/FilterMenu';
 
 // Sample menu data
 const menuItems = [
@@ -51,12 +52,6 @@ const menuItems = [
   },
 ]
 
-interface MenuPageProps {
-  params: {
-    tableId: string;
-  };
-}
-
 interface MenuItemType {
   id: number;
   name: string;
@@ -68,62 +63,54 @@ interface MenuItemType {
   quantity?: number;
 }
 
-export default function MenuPage({ params }: MenuPageProps) {
-  const router = useRouter()
-  const [tableId, setTableId] = useState<string | null>(null)
-  const [filteredItems, setFilteredItems] = useState<MenuItemType[]>(menuItems)
-  const [cartItems, setCartItems] = useState<MenuItemType[]>([])
-  const [showFilterMenu, setShowFilterMenu] = useState(true)
-
-  useEffect(() => {
-    if (params && params.tableId) {
-      setTableId(params.tableId)
-    }
-  }, [params])
-
-  if (!tableId) {
-    return <div className="p-4">Loading...</div>
-  }
+export default function MenuPage() {
+  const router = useRouter();
+  const params = useParams();
+  const tableId = params.tableId as string;
+  const [filteredItems, setFilteredItems] = useState<MenuItemType[]>(menuItems);
+  const [cartItems, setCartItems] = useState<MenuItemType[]>([]);
+  const [showFilterMenu, setShowFilterMenu] = useState(true);
 
   const handleFilterChange = (isVeg: boolean) => {
     if (isVeg) {
-      setFilteredItems(menuItems.filter(item => item.isVeg))
+      setFilteredItems(menuItems.filter(item => item.isVeg));
     } else {
-      setFilteredItems(menuItems)
+      setFilteredItems(menuItems);
     }
-  }
+  };
 
   const handleSearch = (query: string) => {
-    const lowercaseQuery = query.toLowerCase()
-    setFilteredItems(menuItems.filter(item => 
+    const lowercaseQuery = query.toLowerCase();
+    setFilteredItems(menuItems.filter(item =>
       item.name.toLowerCase().includes(lowercaseQuery) ||
       item.description.toLowerCase().includes(lowercaseQuery)
-    ))
-  }
+    ));
+  };
 
   const addToCart = (item: MenuItemType) => {
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(i => i.id === item.id)
+      const existingItem = prevItems.find(i => i.id === item.id);
       if (existingItem) {
-        return prevItems.map(i => 
-          i.id === item.id ? { ...i, quantity: (i.quantity || 0) + 1 } : i
-        )
+        return prevItems.map(i => i.id === item.id
+          ? { ...i, quantity: (i.quantity || 0) + 1 }
+          : i
+        );
       } else {
-        return [...prevItems, { ...item, quantity: 1 }]
+        return [...prevItems, { ...item, quantity: 1 }];
       }
-    })
-  }
+    });
+  };
 
   const toggleFilterMenu = () => {
-    setShowFilterMenu(prev => !prev)
-  }
+    setShowFilterMenu(prev => !prev);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#F1EEE6]">
       <Header tableId={tableId} />
-      
-      <SearchBar 
-        tableId={tableId} 
+
+      <SearchBar
+        tableId={tableId}
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
       />
@@ -157,5 +144,5 @@ export default function MenuPage({ params }: MenuPageProps) {
         </button>
       </div>
     </div>
-  )
+  );
 }

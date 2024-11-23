@@ -7,9 +7,8 @@ interface CheckoutPageParams {
   tableId: string;
 }
 
-
 interface CheckoutPageProps {
-  params: CheckoutPageParams;
+  params: Promise<CheckoutPageParams>;
 }
 
 interface CartItem {
@@ -20,6 +19,10 @@ interface CartItem {
 }
 
 const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
+  // Unwrap params using React.use()
+  const resolvedParams = React.use(params);
+  const { tableId } = resolvedParams;
+  
   const [review, setReview] = React.useState('');
 
   // Static data to replace backend functionality
@@ -29,12 +32,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
     { id: 3, name: "Soda", quantity: 2, price: 40 },
   ]);
 
-  // Check if params is defined
-  if (!params) {
+  // Check if resolvedParams is defined
+  if (!resolvedParams) {
     return <div>Error: No parameters provided.</div>;
   }
-  
-  const { tableId } = params;
 
   const getTotal = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -138,4 +139,3 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ params }) => {
 };
 
 export default CheckoutPage;
-

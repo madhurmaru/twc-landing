@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, use } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import { ShoppingCart, Minus, Plus } from 'lucide-react';
 import Header from '@/components/Header';
 
 interface CartPageProps {
-  params: { tableId: string };
+  params: Promise<{ tableId: string }>;
 }
 
 interface CartItem {
@@ -20,15 +20,23 @@ interface CartItem {
 
 export default function CartPage({ params }: CartPageProps) {
   const router = useRouter();
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { id: 1, name: 'Crispy fries', price: 60, image: '/fries.png', quantity: 2 },
-    { id: 2, name: 'Chicken nuggets', price: 80, image: '/nugg.png', quantity: 1 },
-  ]);
+  const resolvedParams = use(params);
+  const { tableId } = resolvedParams;
+  
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  
+  // Initialize cart items in useEffect to avoid state updates during render
+  useEffect(() => {
+    setCartItems([
+      { id: 1, name: 'Crispy fries', price: 60, image: '/fries.png', quantity: 2 },
+      { id: 2, name: 'Chicken nuggets', price: 80, image: '/nugg.png', quantity: 1 },
+    ]);
+  }, []);
 
   const updateQuantity = (id: number, change: number) => {
-    setCartItems(prevItems => 
-      prevItems.map(item => 
-        item.id === id 
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === id
           ? { ...item, quantity: Math.max(0, item.quantity + change) }
           : item
       ).filter(item => item.quantity > 0)
@@ -40,19 +48,22 @@ export default function CartPage({ params }: CartPageProps) {
   };
 
   const handlePlaceOrder = () => {
-    router.push(`/menu/${params.tableId}/order-tracking`);
+    router.push(`/menu/${tableId}/order-tracking`);
   };
 
+  if (!resolvedParams) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    (<div className="flex flex-col min-h-screen bg-[#f5f1eb]">
-      <Header tableId={params.tableId} />
+    <div className="flex flex-col min-h-screen bg-[#f5f1eb]">
+      <Header tableId={tableId} />
       <main className="flex-1 p-4">
         <div className="rounded-2xl bg-[#FFFFFF] p-4 mb-4">
           <div className="flex items-center gap-2 mb-6">
             <ShoppingCart className="w-5 h-5" />
             <h2 className="text-xl font-serif">Current Order</h2>
           </div>
-
           <div className="space-y-4">
             {cartItems.map((item) => (
               <div key={item.id} className="flex items-center gap-4">
@@ -64,7 +75,8 @@ export default function CartPage({ params }: CartPageProps) {
                     className="rounded-lg object-cover"
                     style={{
                       maxWidth: "100%",
-                    }} />
+                    }}
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-medium">{item.name}</h3>
@@ -90,7 +102,6 @@ export default function CartPage({ params }: CartPageProps) {
               </div>
             ))}
           </div>
-
           <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
             <h3 className="text-lg font-medium">Total</h3>
             <p className="text-lg">₹ {getTotal()}</p>
@@ -103,7 +114,7 @@ export default function CartPage({ params }: CartPageProps) {
             <span className="text-lg font-medium">Current Order</span>
             <span className="text-lg">₹ {getTotal()}</span>
           </div>
-          <button 
+          <button
             onClick={handlePlaceOrder}
             className="w-full py-3 bg-[#9D8480] text-white rounded-md hover:bg-[#3a2e2c] transition-colors"
           >
@@ -111,6 +122,6 @@ export default function CartPage({ params }: CartPageProps) {
           </button>
         </div>
       </div>
-    </div>)
+    </div>
   );
 }
