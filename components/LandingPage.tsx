@@ -44,7 +44,7 @@ export default function LandingPage() {
       <header className="fixed w-full top-0 z-50 bg-[#F5F1EB] shadow-sm">
         <Navbar />
       </header>
-      <main className="container mx-auto px-6 pt-24 pb-12">
+      <main className="container mx-auto px-6 pt-32 pb-12">
         <div className="flex flex-col lg:flex-row items-center mb-20">
           {/* Left content section */}
           <div className="lg:w-1/2 lg:pr-12 animate-slideInFromLeft">

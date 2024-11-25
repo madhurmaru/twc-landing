@@ -115,7 +115,7 @@ export default function MenuPage() {
         onSearch={handleSearch}
       />
 
-      <main className="flex-1 p-4 space-y-4">
+      <main className="flex-1 p-6 space-y-2">
         {filteredItems.map((item) => (
           <MenuItem
             key={item.id}
@@ -133,7 +133,7 @@ export default function MenuPage() {
         </div>
       )}
 
-      <div className="sticky bottom-0 p-4 bg-white z-40">
+      <div className="sticky bottom-0 p-2 bg-white z-40">
         <button
           type="button"
           aria-label="View Cart"

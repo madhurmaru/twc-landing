@@ -49,7 +49,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <>
       {/* Menu Item Card */}
-      <div className="bg-[#FAF7F5] p-4 rounded-lg">
+      <div className="bg-[#FAF7F5] p-1 rounded-lg">
         <div className="flex justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-start justify-between mb-1">
@@ -70,7 +70,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
             <br />
             <button
               onClick={onAddToCart}
-              className="mt-2 px-4 py-1 bg-[#9D8480] text-white text-sm rounded hover:bg-[#6d4837] transition-colors"
+              className="mt-2 px-2 py-1 bg-[#9D8480] text-white text-sm rounded hover:bg-[#6d4837] transition-colors"
             >
               Add to cart
             </button>
