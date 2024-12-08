@@ -1,6 +1,7 @@
+/** @type {import('tailwindcss').Config} */
 import tailwindcssAnimate from 'tailwindcss-animate';
 
-const config = {
+module.exports = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -47,7 +48,7 @@ const config = {
           '5': 'hsl(var(--chart-5))'
         }
       },
-       fontFamily: {
+      fontFamily: {
         aleo: ['var(--font-aleo)'], 
         roboto: ['var(--font-roboto)'], 
       },
@@ -55,10 +56,8 @@ const config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
-      }
+      },
     }
   },
   plugins: [tailwindcssAnimate],
-};
-
-export default config;
+}

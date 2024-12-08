@@ -1,10 +1,9 @@
-import '../styles/globals.css'
+import '../../../styles/globals.css'
+import '../../../styles/animations.css'
 import type { Metadata } from 'next'
-import { aleo, roboto } from './fonts'
-import '../styles/animations.css'
-import '../styles/gradients.css'
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/react"
+import { aleo, roboto } from '../../fonts'
+import '../../../styles/gradients.css'
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'The Waiter Company',
@@ -20,8 +19,6 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning className={`${aleo.variable} ${roboto.variable} font-sans bg-primary`}>
         {children}
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   )
